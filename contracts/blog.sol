@@ -1,25 +1,24 @@
-// SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.9;
+// SPDX-License-Identifier: GPL-3.0
+
+pragma solidity >=0.7.0 <0.9.0;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
-contract blog is ERC721 {
+contract wryteXYZ is ERC721 {
 
-    uint256 public tokenCounter;
+
     mapping (uint256 => string) private _tokenURIs;
     
    constructor(
     string memory name,
     string memory symbol
    ) ERC721(name, symbol){
-        tokenCounter = 0;
    }
 
-   function mint(string memory _tokenURI) public {
-    _safeMint(msg.sender, tokenCounter);
-    _setTokenURI(tokenCounter, _tokenURI);
+   function mint(string memory _tokenURI, uint256 uniq) public {
+    _safeMint(msg.sender, uniq);
+    _setTokenURI(uniq, _tokenURI);
 
-    tokenCounter++;
    }
 
    function _setTokenURI(uint256 _tokenId, string memory _tokenURI) internal virtual {
