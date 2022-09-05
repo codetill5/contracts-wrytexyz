@@ -36,4 +36,20 @@ contract wryteXYZ is ERC721 {
     );
     return _tokenURIs[_tokenId];
    }
+
+   function _beforeTokenTransfer(
+    address from, 
+    address to, 
+    uint256 tokenId) internal override {
+        super._beforeTokenTransfer(from, to, tokenId);
+        if(from != address(0)){
+            address owner = ownerOf(tokenId);
+            require(owner == msg.sender, "Only owner can burn or transfer");
+        }
+    }
+
+    function burn(uint256 tokenId) public {
+        super._burn(tokenId);
+    }
+
 }
